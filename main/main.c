@@ -105,7 +105,6 @@ void oled1_demo_2(void *p) {
     printf("Inicializando btn and LEDs\n");
     oled1_btn_led_init();
 
-    char cnt = 15;
     while (1) {
 
         gfx_clear_buffer(&disp);
