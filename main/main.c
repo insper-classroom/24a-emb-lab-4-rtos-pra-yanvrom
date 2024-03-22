@@ -101,16 +101,15 @@ void oled_task(){
     printf("Inicializando btn and LEDs\n");
     oled1_btn_led_init();
     uint32_t distancia;
-    int loading;
     char distancia_str[12];
 
     while(true){
         if(xSemaphoreTake(xSemaphoreTrigger, portMAX_DELAY) == pdTRUE){
             if(xQueueReceive(xQueueDistance, &distancia, pdMS_TO_TICKS(1000)) == pdTRUE){
-                sprintf(distancia_str, "%u cm", distancia);
+                sprintf(distancia_str,"%u cm", distancia);
                 gfx_clear_buffer(&disp);
-                gfx_draw_string(&disp, 0, 0, 1, "DISTANCIA: ");
-                gfx_draw_string(&disp, 0, 0, 1, distancia_str);
+                gfx_draw_string(&disp, 0, 1, 1,  "Distancia: ");
+                gfx_draw_string(&disp, 80, 1, 1, distancia_str);
                 if(distancia <= 128){
                     gfx_draw_line(&disp, 0, 20, distancia*1.3, 20);
                 }
